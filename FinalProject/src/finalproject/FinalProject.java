@@ -433,9 +433,16 @@ public class FinalProject extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Inserts a new player to the database
+     * @param evt 
+     */
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
         String sql = "INSERT INTO Players(FirstName, LastName, Age) VALUES(?, ?, ?)";
 
+        /**
+         * Validating the users input
+         */
         if (txtFirstName.getText().trim().isEmpty()) {
             lblFNameError.setText("First name is empty");
         }
@@ -467,6 +474,9 @@ public class FinalProject extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnInsertActionPerformed
 
+    /**
+     * Fills the players combobox
+     */
     private void FillPlayersCombo() {
         try {
             cboPlayer1.removeAllItems();
@@ -486,6 +496,9 @@ public class FinalProject extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Fills the games combobox
+     */
     private void FillGamesCombo() {
         try {
             cboGameNum.removeAllItems();
@@ -503,6 +516,10 @@ public class FinalProject extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Inserts a new game to the database
+     * @param evt 
+     */
     private void btnInsertGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertGameActionPerformed
         String sql = "INSERT INTO Games(PlayerOne, PlayerTwo, DatePlayed, NumMoves, Winner) VALUES(?, ?, ?, ?, ?)";
 
@@ -538,10 +555,13 @@ public class FinalProject extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnInsertGameActionPerformed
 
+    /**
+     * Retrieve the selected index game from the database
+     * @param evt 
+     */
     private void btnRetrieveGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrieveGameActionPerformed
         String tmp = (String) cboGameNum.getSelectedItem();
         String sql = "SELECT * FROM Games WHERE GameID=?";
-        //String sql = "SELECT g.DatePlayed, g.NumMoves, g.Winner, p.PlayerID, p.FirstName || ' ' || p.LastName AS Name FROM Games g INNER JOIN Players p ON p.PlayerID = PlayerOne AND p.PlayerID = PlayerTwo WHERE GameID=?";
 
         if (cboGameNum.getSelectedIndex() == -1) {
             JOptionPane.showMessageDialog(null, "You must select a game to retrieve first");
@@ -571,6 +591,10 @@ public class FinalProject extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnRetrieveGameActionPerformed
 
+    /** 
+     * Clears the error labels from Add Player tab
+     * @param evt 
+     */
     private void txtFirstNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFirstNameKeyReleased
         lblFNameError.setText("");
     }//GEN-LAST:event_txtFirstNameKeyReleased
